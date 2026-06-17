@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Kalina Carvalho · Odontopediatra em João Pessoa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<style>
+:root {
+  --green: oklch(74% 0.19 150);
+  --green-deep: oklch(40% 0.14 150);
+  --green-mid: oklch(55% 0.17 150);
+  --plum: oklch(52% 0.1 320);
+  --navy: oklch(22% 0.06 240);
+  --cream: oklch(97% 0.012 95);
+  --cream-warm: oklch(94% 0.018 90);
+  --cream-dark: oklch(90% 0.022 90);
+  --text: oklch(18% 0.025 240);
+  --text-mid: oklch(42% 0.02 240);
+  --text-light: oklch(62% 0.015 240);
+  --gold: oklch(78% 0.09 85);
+  --white: oklch(99% 0.004 95);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 32px;
+  --r-xl: 64px;
+  --shadow-sm: 0 1px 4px oklch(0% 0 0 / .06), 0 4px 12px oklch(0% 0 0 / .05);
+  --shadow-md: 0 2px 8px oklch(0% 0 0 / .07), 0 8px 24px oklch(0% 0 0 / .09), 0 16px 48px oklch(0% 0 0 / .05);
+  --shadow-lg: 0 4px 16px oklch(0% 0 0 / .08), 0 16px 48px oklch(0% 0 0 / .12), 0 32px 80px oklch(0% 0 0 / .08);
+  --ease-out-expo: cubic-bezier(.16,1,.3,1);
+  --ease-out-quart: cubic-bezier(.25,1,.5,1);
+  --container: 1200px;
+  --pad: clamp(20px, 5vw, 80px);
+  --section-gap: clamp(72px, 9vw, 136px);
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.reveal { opacity: 1; }
+
+/* ── GRAIN TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── TYPOGRAPHY ── */
+.display { font-family: var(--font-display); }
+.serif-italic { font-family: var(--font-display); font-style: italic; }
+h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.1; letter-spacing: -.02em; }
+p { line-height: 1.65; font-size: clamp(15px, 1.6vw, 17px); color: var(--text-mid); }
+
+/* ── LABEL TRACADO ── */
+.label-traced {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.label-traced::before,.label-traced::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--green-mid);
+  opacity: .6;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  transition: transform 200ms var(--ease-out-quart), box-shadow 200ms var(--ease-out-quart), background 200ms;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--green-deep);
+  color: var(--white);
+  box-shadow: 0 4px 16px oklch(40% 0.14 150 / .3);
+}
+.btn-primary:hover {
+  background: var(--green-mid);
+  box-shadow: 0 8px 28px oklch(40% 0.14 150 / .4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--green-deep);
+  border: 1.5px solid var(--green-deep);
+}
+.btn-outline:hover {
+  background: var(--green-deep);
+  color: var(--white);
+}
+
+.btn-white {
+  background: var(--white);
+  color: var(--green-deep);
+  box-shadow: 0 4px 16px oklch(0% 0 0 / .12);
+}
+.btn-white:hover {
+  box-shadow: 0 8px 28px oklch(0% 0 0 / .2);
+}
+
+/* ── FLOATING WA ── */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px oklch(74% 0.19 150 / .4);
+  transition: transform 200ms var(--ease-out-quart), box-shadow 200ms;
+}
+.wa-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 8px 28px oklch(74% 0.19 150 / .5); }
+.wa-float svg { width: 28px; height: 28px; }
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  transition: background 300ms, box-shadow 300ms;
+  padding: 0 var(--pad);
+}
+.nav.scrolled {
+  background: oklch(98% 0.01 95 / .95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 oklch(0% 0 0 / .06);
+}
+.nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nav-logo img { height: 48px; width: auto; object-fit: contain; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--text-mid);
+  transition: color 200ms;
+}
+.nav-links a:hover { color: var(--green-deep); }
+.nav-cta { flex-shrink: 0; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  transition: transform 300ms, opacity 300ms;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  background: var(--cream);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 6vw, 40px);
+  color: var(--text);
+  transition: color 200ms;
+}
+.mobile-menu a:hover { color: var(--green-deep); }
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  min-height: 100svh;
+  background: var(--cream-warm);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px;
+}
+.hero-bg-stripe {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%;
+  height: 100%;
+  background: oklch(94% 0.022 90);
+  z-index: 0;
+}
+
+.hero-monogram {
+  position: absolute;
+  bottom: -4%;
+  left: -2%;
+  font-family: var(--font-display);
+  font-size: clamp(180px, 22vw, 320px);
+  font-weight: 600;
+  color: var(--green-deep);
+  opacity: .05;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: -.04em;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(48px, 7vw, 100px) 0 clamp(48px, 7vw, 100px) var(--pad);
+  max-width: 640px;
+}
+.hero-edition {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-edition::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-size: clamp(42px, 5.5vw, 82px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--green-deep);
+}
+.hero-subtitle {
+  font-size: clamp(16px, 2vw, 22px);
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-mid);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.hero-tagline {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--text-mid);
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.hero-cro {
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.hero-image-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  padding: clamp(32px, 5vw, 72px) var(--pad) 0 clamp(20px, 3vw, 48px);
+}
+.hero-arc-frame {
+  width: clamp(260px, 36vw, 480px);
+  aspect-ratio: 3/4;
+  border-radius: 999px 999px 0 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.hero-arc-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.hero-arc-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, oklch(40% 0.14 150 / .12) 100%);
+}
+
+.hero-seal {
+  position: absolute;
+  bottom: clamp(16px, 3vw, 40px);
+  right: clamp(16px, 4vw, 60px);
+  z-index: 3;
+}
+
+/* ══════════════════════════════════
+   SEAL SVG
+══════════════════════════════════ */
+.seal svg { width: clamp(88px, 10vw, 116px); height: auto; filter: drop-shadow(0 4px 12px oklch(0% 0 0 / .15)); }
+
+/* ══════════════════════════════════
+   CREDIBILIDADE
+══════════════════════════════════ */
+.credibilidade {
+  background: var(--green-deep);
+  padding: clamp(48px, 6vw, 80px) 0;
+}
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  text-align: center;
+}
+.cred-item {
+  padding: clamp(16px, 2.5vw, 32px) clamp(16px, 2vw, 24px);
+  position: relative;
+}
+.cred-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; height: 60%;
+  width: 1px;
+  background: oklch(100% 0 0 / .15);
+}
+.cred-num {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -.03em;
+}
+.cred-num span {
+  font-size: .6em;
+  font-style: italic;
+  vertical-align: super;
+}
+.cred-label {
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 400;
+  letter-spacing: .06em;
+  color: oklch(100% 0 0 / .7);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* ══════════════════════════════════
+   SOBRE
+══════════════════════════════════ */
+.sobre {
+  padding: var(--section-gap) 0;
+  background: var(--cream);
+}
+.sobre-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+.sobre-image-col { position: relative; }
+.sobre-arc-frame {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 999px 999px var(--r-lg) var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  max-width: 420px;
+  margin: 0 auto;
+}
+.sobre-arc-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.sobre-num {
+  position: absolute;
+  bottom: clamp(-16px, -2vw, -24px);
+  right: clamp(8px, 3vw, 40px);
+  font-family: var(--font-display);
+  font-size: clamp(100px, 14vw, 160px);
+  font-weight: 600;
+  color: var(--green-deep);
+  opacity: .07;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+.sobre-text { }
+.sobre-text .label-traced { margin-bottom: 20px; }
+.sobre-title {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+.sobre-title em { color: var(--green-deep); }
+.sobre-text p { margin-bottom: 16px; max-width: 520px; }
+.sobre-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid oklch(40% 0.14 150 / .25);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--green-deep);
+  background: oklch(40% 0.14 150 / .04);
+}
+
+/* ══════════════════════════════════
+   DIFERENCIAIS
+══════════════════════════════════ */
+.diferenciais {
+  padding: var(--section-gap) 0;
+  background: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+.diferenciais-title-wrap { text-align: center; margin-bottom: clamp(40px, 5vw, 72px); }
+.diferenciais-title {
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.1;
+}
+.diferenciais-title em { color: var(--green-deep); }
+.dif-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.dif-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: clamp(24px, 3vw, 36px);
+  box-shadow: var(--shadow-sm);
+  transition: transform 250ms var(--ease-out-quart), box-shadow 250ms;
+  position: relative;
+  overflow: hidden;
+}
+.dif-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.dif-card-num {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 600;
+  color: var(--green-deep);
+  opacity: .08;
+  position: absolute;
+  top: 8px; right: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+.dif-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: oklch(40% 0.14 150 / .08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.dif-icon svg { width: 22px; height: 22px; stroke: var(--green-deep); }
+.dif-card h3 {
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.dif-card p { font-size: 14px; color: var(--text-mid); margin: 0; }
+
+/* ══════════════════════════════════
+   TRATAMENTOS
+══════════════════════════════════ */
+.tratamentos {
+  padding: var(--section-gap) 0;
+  background: var(--cream);
+}
+.section-header { margin-bottom: clamp(40px, 5vw, 64px); }
+.section-header .label-traced { margin-bottom: 16px; }
+.section-title {
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 600;
+  line-height: 1.08;
+  color: var(--text);
+}
+.section-title em { color: var(--green-deep); }
+.trat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.trat-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 250ms var(--ease-out-quart), box-shadow 250ms;
+  display: flex;
+  flex-direction: column;
+}
+.trat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.trat-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.trat-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms var(--ease-out-quart);
+}
+.trat-card:hover .trat-img img { transform: scale(1.04); }
+.trat-body { padding: clamp(18px, 2.5vw, 28px); flex: 1; display: flex; flex-direction: column; }
+.trat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: oklch(40% 0.14 150 / .08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.trat-icon svg { width: 20px; height: 20px; stroke: var(--green-deep); }
+.trat-body h3 {
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.trat-body p { font-size: 13.5px; color: var(--text-mid); flex: 1; margin-bottom: 16px; }
+.trat-link {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 200ms;
+}
+.trat-link:hover { gap: 10px; }
+.trat-link svg { width: 14px; height: 14px; stroke: var(--green-deep); }
+
+/* ══════════════════════════════════
+   COMO FUNCIONA
+══════════════════════════════════ */
+.como {
+  padding: var(--section-gap) 0;
+  background: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+.como-monogram {
+  position: absolute;
+  top: 50%;
+  right: -4%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(200px, 26vw, 380px);
+  font-weight: 600;
+  color: var(--green-deep);
+  opacity: .04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.como-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+.como-steps { display: flex; flex-direction: column; gap: 28px; }
+.como-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.step-num {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--green-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--green-deep);
+}
+.step-content h3 {
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.step-content p { font-size: 14px; color: var(--text-mid); margin: 0; }
+.como-image {
+  position: relative;
+  z-index: 2;
+}
+.como-img-wrap {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--r-xl) var(--r-xl) var(--r-md) var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.como-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ══════════════════════════════════
+   GALERIA
+══════════════════════════════════ */
+.galeria {
+  padding: var(--section-gap) 0;
+  background: var(--cream);
+}
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+  margin-top: clamp(32px, 4vw, 56px);
+}
+.gal-item {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.gal-item.featured {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+.gal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 4/3;
+  transition: transform 500ms var(--ease-out-quart);
+}
+.gal-item.featured img { aspect-ratio: 16/9; }
+.gal-item:hover img { transform: scale(1.04); }
+.gal-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: oklch(40% 0.14 150 / 0);
+  transition: background 300ms;
+}
+.gal-item:hover::after { background: oklch(40% 0.14 150 / .08); }
+
+/* ══════════════════════════════════
+   DEPOIMENTOS
+══════════════════════════════════ */
+.depoimentos {
+  padding: var(--section-gap) 0;
+  background: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+.dep-header { text-align: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.dep-header .label-traced { margin-bottom: 16px; justify-content: center; }
+.dep-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.dep-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: clamp(24px, 3vw, 40px);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dep-quote {
+  font-family: var(--font-display);
+  font-size: 64px;
+  line-height: .8;
+  color: var(--green);
+  opacity: .3;
+  margin-bottom: -8px;
+}
+.dep-text {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 20px);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+  flex: 1;
+}
+.dep-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--cream-dark);
+  padding-top: 16px;
+}
+.dep-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: oklch(40% 0.14 150 / .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.dep-avatar svg { width: 24px; height: 24px; stroke: var(--green-mid); }
+.dep-name { font-size: 14px; font-weight: 500; color: var(--text); }
+.dep-role { font-size: 12px; color: var(--text-light); }
+.dep-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+.dep-stars svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
+
+/* ══════════════════════════════════
+   FAQ
+══════════════════════════════════ */
+.faq {
+  padding: var(--section-gap) 0;
+  background: var(--cream);
+}
+.faq-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.faq-side { position: sticky; top: 100px; }
+.faq-side .label-traced { margin-bottom: 20px; }
+.faq-side-title {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.faq-side-title em { color: var(--green-deep); }
+.faq-side p { font-size: 15px; color: var(--text-mid); }
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid var(--cream-dark);
+}
+.faq-item:first-child { border-top: 1px solid var(--cream-dark); }
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 200ms;
+}
+.faq-question:hover { color: var(--green-deep); }
+.faq-chevron {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 300ms var(--ease-out-quart), background 200ms, border-color 200ms;
+}
+.faq-chevron svg { width: 14px; height: 14px; stroke: var(--text-mid); transition: stroke 200ms; }
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+}
+.faq-item.open .faq-chevron svg { stroke: var(--white); }
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 350ms var(--ease-out-quart);
+}
+.faq-item.open .faq-answer { grid-template-rows: 1fr; }
+.faq-answer-inner {
+  overflow: hidden;
+}
+.faq-answer p {
+  padding-bottom: 20px;
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════
+   CTA
+══════════════════════════════════ */
+.cta-section {
+  background: var(--green-deep);
+  padding: clamp(64px, 8vw, 120px) 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.cta-monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(200px, 30vw, 440px);
+  font-weight: 600;
+  color: var(--white);
+  opacity: .04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.cta-label {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .5);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.cta-title {
+  font-size: clamp(36px, 5.5vw, 80px);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.06;
+  letter-spacing: -.03em;
+  margin-bottom: 16px;
+}
+.cta-title em {
+  font-style: italic;
+  color: oklch(100% 0 0 / .8);
+}
+.cta-sub {
+  font-size: clamp(14px, 1.6vw, 17px);
+  color: oklch(100% 0 0 / .65);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+.cta-note {
+  margin-top: 20px;
+  font-size: 12px;
+  color: oklch(100% 0 0 / .4);
+  letter-spacing: .04em;
+}
+
+/* ══════════════════════════════════
+   CONTATO
+══════════════════════════════════ */
+.contato {
+  padding: var(--section-gap) 0;
+  background: var(--cream-warm);
+}
+.contato-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.contato-info .label-traced { margin-bottom: 20px; }
+.contato-info h2 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+.contato-items { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+.contato-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ci-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: oklch(40% 0.14 150 / .08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ci-icon svg { width: 18px; height: 18px; stroke: var(--green-deep); }
+.ci-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+.ci-text strong { color: var(--text); font-weight: 500; display: block; font-size: 15px; }
+.contato-map {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.contato-map iframe {
+  width: 100%;
+  height: clamp(280px, 35vw, 440px);
+  border: 0;
+  display: block;
+}
+
+/* ══════════════════════════════════
+   RODAPE
+══════════════════════════════════ */
+.footer {
+  background: var(--navy);
+  color: var(--white);
+  padding: clamp(48px, 6vw, 80px) 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+}
+.footer-brand img { height: 44px; width: auto; object-fit: contain; margin-bottom: 16px; filter: brightness(0) invert(1) opacity(.8); }
+.footer-brand p { font-size: 13px; color: oklch(100% 0 0 / .5); line-height: 1.6; max-width: 220px; }
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .4);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a, .footer-col ul li {
+  font-size: 13.5px;
+  color: oklch(100% 0 0 / .6);
+  transition: color 200ms;
+}
+.footer-col ul li a:hover { color: var(--green); }
+.footer-social { display: flex; gap: 12px; margin-top: 16px; }
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid oklch(100% 0 0 / .15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 200ms, background 200ms;
+}
+.footer-social a:hover { border-color: var(--green); background: oklch(74% 0.19 150 / .1); }
+.footer-social a svg { width: 16px; height: 16px; stroke: oklch(100% 0 0 / .6); transition: stroke 200ms; }
+.footer-social a:hover svg { stroke: var(--green); }
+.footer-bottom {
+  border-top: 1px solid oklch(100% 0 0 / .08);
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-bottom p { font-size: 12px; color: oklch(100% 0 0 / .3); }
+.footer-mono {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+  color: oklch(100% 0 0 / .15);
+  letter-spacing: -.02em;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 1024px) {
+  .dif-grid { grid-template-columns: repeat(2, 1fr); }
+  .dep-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .faq-inner { grid-template-columns: 1fr; }
+  .faq-side { position: static; }
+  .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+  .gal-item.featured { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 72px; }
+  .hero-bg-stripe { display: none; }
+  .hero-content {
+    padding: clamp(40px, 7vw, 64px) var(--pad) 32px;
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-edition { justify-content: center; }
+  .hero-tagline { margin-left: auto; margin-right: auto; }
+  .hero-ctas { justify-content: center; }
+  .hero-monogram { display: none; }
+  .hero-image-wrap {
+    order: -1;
+    padding: 32px var(--pad) 0;
+    height: auto;
+    justify-content: center;
+  }
+  .hero-arc-frame { width: clamp(220px, 70vw, 340px); }
+  .hero-seal { bottom: -16px; right: 8px; }
+  .cred-grid { grid-template-columns: repeat(2, 1fr); }
+  .cred-item:nth-child(2)::after { display: none; }
+  .sobre-inner { grid-template-columns: 1fr; }
+  .sobre-text { text-align: center; }
+  .sobre-text p { margin-left: auto; margin-right: auto; }
+  .sobre-badges { justify-content: center; }
+  .label-traced { justify-content: center; }
+  .dif-grid { grid-template-columns: 1fr; }
+  .section-header { text-align: center; }
+  .section-header .label-traced { justify-content: center; }
+  .trat-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .como-inner { grid-template-columns: 1fr; }
+  .como-image { order: -1; }
+  .galeria-grid { grid-template-columns: 1fr 1fr; }
+  .gal-item.featured { grid-column: span 2; }
+  .dep-grid { grid-template-columns: 1fr; }
+  .contato-inner { grid-template-columns: 1fr; }
+  .contato-info { text-align: center; }
+  .contato-info .label-traced { justify-content: center; }
+  .contato-item { justify-content: flex-start; text-align: left; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cta-title { text-align: center; }
+  .diferenciais-title { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .galeria-grid { grid-template-columns: 1fr; }
+  .gal-item.featured { grid-column: span 1; }
+  .cred-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+  .dep-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/5583987751689" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
+  </svg>
+</a>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#sobre" onclick="closeMobile()">Sobre</a>
+  <a href="#tratamentos" onclick="closeMobile()">Tratamentos</a>
+  <a href="#galeria" onclick="closeMobile()">Galeria</a>
+  <a href="#depoimentos" onclick="closeMobile()">Depoimentos</a>
+  <a href="#contato" onclick="closeMobile()">Contato</a>
+  <a href="https://wa.me/5583987751689" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:12px">Agendar Consulta</a>
+</nav>
+
+<!-- NAV -->
+<header class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" aria-label="Dra. Kalina Carvalho">
+      <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/cropped-logo-240x101.png" alt="Dra. Kalina Carvalho – Odontopediatra" width="240" height="101" loading="eager">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#tratamentos">Tratamentos</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="https://wa.me/5583987751689" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Agendar Consulta
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-stripe" aria-hidden="true"></div>
+  <div class="hero-monogram" aria-hidden="true">KC</div>
+
+  <div class="hero-content reveal">
+    <div class="hero-edition">2026 · Odontopediatria · João Pessoa</div>
+    <h1 class="hero-title">
+      Sorrisos saudáveis<br>criados com<br><em>paixão e amor</em>
+    </h1>
+    <p class="hero-subtitle">Odontopediatria humanizada para o seu filho</p>
+    <p class="hero-tagline">Especializada em atendimento lúdico e acolhedor, com 22 anos de experiência cuidando dos dentes e da confiança de cada criança.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5583987751689" class="btn btn-primary" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#sobre" class="btn btn-outline">Conhecer a Dra. Kalina</a>
+    </div>
+    <span class="hero-cro">CRO: 3153 – PB · Membro ABOPED</span>
+  </div>
+
+  <div class="hero-image-wrap">
+    <div class="hero-arc-frame reveal">
+      <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/drakalinacarvalho.jpg" alt="Dra. Kalina Carvalho, Odontopediatra em João Pessoa" width="480" height="640" loading="eager">
+    </div>
+    <div class="hero-seal seal">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Dra. Kalina Carvalho – Especialista em Odontopediatria">
+        <circle cx="60" cy="60" r="54" stroke="white" stroke-width="1" opacity=".4"/>
+        <circle cx="60" cy="60" r="48" stroke="white" stroke-width=".5" opacity=".25"/>
+        <text x="60" y="68" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="32" font-weight="600" fill="white" opacity=".9">KC</text>
+        <path id="seal-arc" d="M18 60 A42 42 0 0 1 102 60" fill="none"/>
+        <text font-family="Hanken Grotesk, sans-serif" font-size="7.5" fill="white" opacity=".6" letter-spacing="2">
+          <textPath href="#seal-arc" startOffset="5%">ODONTOPEDIATRIA · JOÃO PESSOA · PB</textPath>
+        </text>
+        <circle cx="60" cy="60" r="3" fill="white" opacity=".3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILIDADE -->
+<section class="credibilidade" id="credibilidade">
+  <div class="container">
+    <div class="cred-grid">
+      <div class="cred-item reveal">
+        <div class="cred-num">24<span>anos</span></div>
+        <div class="cred-label">Formada pela UFPB</div>
+      </div>
+      <div class="cred-item reveal">
+        <div class="cred-num">22<span>anos</span></div>
+        <div class="cred-label">Especialista em Odontopediatria</div>
+      </div>
+      <div class="cred-item reveal">
+        <div class="cred-num">ABOPED</div>
+        <div class="cred-label">Membro desde a fundação na PB</div>
+      </div>
+      <div class="cred-item reveal">
+        <div class="cred-num">3153</div>
+        <div class="cred-label">CRO · Paraíba</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-image-col reveal">
+        <div class="sobre-arc-frame">
+          <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/drakalinacarvalhomobile.jpg" alt="Retrato da Dra. Kalina Carvalho no consultório" width="420" height="560" loading="lazy">
+        </div>
+        <div class="sobre-num" aria-hidden="true">22</div>
+      </div>
+      <div class="sobre-text reveal">
+        <div class="label-traced">Sobre a especialista</div>
+        <h2 class="sobre-title">
+          Dra. <em>Kalina</em><br>Carvalho
+        </h2>
+        <p>Formada pela Universidade Federal da Paraíba há 24 anos, com especialização em Odontopediatria pela ABO-PB, a Dra. Kalina dedica cada consulta a transformar a relação das crianças com o dentista em uma experiência positiva e inesquecível.</p>
+        <p>Membro da ABOPED desde a sua fundação na Paraíba, ela acompanha gerações de famílias, unindo atualização constante e técnicas minimamente invasivas a um cuidado verdadeiramente humano, que respeita o ritmo e o universo de cada criança.</p>
+        <div class="sobre-badges">
+          <span class="badge">UFPB · Graduação</span>
+          <span class="badge">ABO-PB · Especialização</span>
+          <span class="badge">Membro ABOPED</span>
+          <span class="badge">Atendimento Inclusivo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais" id="diferenciais">
+  <div class="container">
+    <div class="diferenciais-title-wrap reveal">
+      <div class="label-traced" style="justify-content:center;margin-bottom:16px">Por que nos escolher</div>
+      <h2 class="diferenciais-title">Um ambiente criado<br>para <em>encantar</em></h2>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card reveal">
+        <div class="dif-card-num">01</div>
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/></svg>
+        </div>
+        <h3>Sala Lúdica</h3>
+        <p>Ambiente colorido com brinquedos, almofadas e decoração especial para que a criança se sinta em casa desde o primeiro momento.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-card-num">02</div>
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+        </div>
+        <h3>TV no Teto</h3>
+        <p>Cada criança assiste ao seu desenho favorito durante o atendimento, transformando a cadeira do dentista num momento de conforto.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-card-num">03</div>
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+        </div>
+        <h3>Condicionamento Positivo</h3>
+        <p>Técnica que reforça o bom comportamento com brindes e elogios, construindo uma relação de confiança e alegria com a odontologia.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-card-num">04</div>
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Estacionamento Grátis</h3>
+        <p>Comodidade total para a família: vaga garantida sem custo adicional, para que a visita seja tranquila do início ao fim.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-card-num">05</div>
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Atendimento ao Autismo</h3>
+        <p>Abordagem especializada e respeitosa para crianças com Transtorno do Espectro Autista, adaptando cada etapa ao tempo do paciente.</p>
+      </div>
+      <div class="dif-card reveal">
+        <div class="dif-card-num">06</div>
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Materiais Premium</h3>
+        <p>Utilização de materiais de alta qualidade e técnicas minimamente invasivas, garantindo segurança, durabilidade e o melhor resultado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRATAMENTOS -->
+<section class="tratamentos" id="tratamentos">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label-traced">Especialidades</div>
+      <h2 class="section-title">O que <em>tratamos</em></h2>
+    </div>
+    <div class="trat-grid">
+      <div class="trat-card reveal">
+        <div class="trat-img">
+          <img src="assets/ai-2.jpg" alt="Consulta de prevenção e diagnóstico" width="800" height="450" loading="lazy">
+        </div>
+        <div class="trat-body">
+          <div class="trat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+          </div>
+          <h3>Consulta e Prevenção</h3>
+          <p>Consultas periódicas realizadas de forma lúdica, com orientações individualizadas de cuidado bucal para a criança e a família.</p>
+          <a href="https://wa.me/5583987751689" class="trat-link" target="_blank" rel="noopener">Agendar<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="trat-card reveal">
+        <div class="trat-img">
+          <img src="assets/ai-3.jpg" alt="Tratamento endodôntico" width="800" height="450" loading="lazy">
+        </div>
+        <div class="trat-body">
+          <div class="trat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+          </div>
+          <h3>Endodontia</h3>
+          <p>Tratamento de canal em dentes de leite para eliminar focos de infecção e preservar a saúde bucal sem complicações futuras.</p>
+          <a href="https://wa.me/5583987751689" class="trat-link" target="_blank" rel="noopener">Agendar<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="trat-card reveal">
+        <div class="trat-img">
+          <img src="assets/ai-1.jpg" alt="Exodontias" width="800" height="450" loading="lazy">
+        </div>
+        <div class="trat-body">
+          <div class="trat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h3>Exodontias</h3>
+          <p>Extração cuidadosa de dentes de leite que não caíram naturalmente, garantindo que o dente permanente nasça no lugar correto.</p>
+          <a href="https://wa.me/5583987751689" class="trat-link" target="_blank" rel="noopener">Agendar<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="trat-card reveal">
+        <div class="trat-img">
+          <img src="assets/ai-4.jpg" alt="Restaurações" width="800" height="450" loading="lazy">
+        </div>
+        <div class="trat-body">
+          <div class="trat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12h6M12 9v6"/></svg>
+          </div>
+          <h3>Restaurações</h3>
+          <p>Restaurações atraumáticas sem motor e restaurações estéticas que devolvem forma, função e aparência natural aos dentes da criança.</p>
+          <a href="https://wa.me/5583987751689" class="trat-link" target="_blank" rel="noopener">Agendar<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="trat-card reveal">
+        <div class="trat-img">
+          <img src="assets/ai-5.jpg" alt="Traumas dentários" width="800" height="450" loading="lazy">
+        </div>
+        <div class="trat-body">
+          <div class="trat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Traumas Dentários</h3>
+          <p>Atendimento rápido e especializado para reconstrução de dentes fraturados, devolvendo estrutura e estética com técnicas restauradoras.</p>
+          <a href="https://wa.me/5583987751689" class="trat-link" target="_blank" rel="noopener">Agendar<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como" id="como">
+  <div class="como-monogram" aria-hidden="true">KC</div>
+  <div class="container">
+    <div class="como-inner">
+      <div class="como-steps">
+        <div class="section-header reveal">
+          <div class="label-traced">A jornada do seu filho</div>
+          <h2 class="section-title">Como <em>funciona</em></h2>
+        </div>
+        <div class="como-step reveal">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Agendamento</h3>
+            <p>Escolha o melhor horário pelo WhatsApp. Confirmamos em minutos e enviamos o endereço completo.</p>
+          </div>
+        </div>
+        <div class="como-step reveal">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Acolhimento Lúdico</h3>
+            <p>A criança é recebida na sala lúdica para se ambientar, brincar e construir confiança antes de qualquer procedimento.</p>
+          </div>
+        </div>
+        <div class="como-step reveal">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Avaliação Personalizada</h3>
+            <p>A Dra. Kalina realiza o diagnóstico completo e apresenta um plano de cuidados claro, adaptado ao ritmo da criança.</p>
+          </div>
+        </div>
+        <div class="como-step reveal">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Tratamento Seguro</h3>
+            <p>Com TV no teto, condicionamento positivo e materiais premium, o tratamento acontece com leveza e segurança para todos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="como-image reveal">
+        <div class="como-img-wrap">
+          <img src="assets/ai-6.jpg" alt="Ambiente acolhedor do consultório da Dra. Kalina" width="900" height="1120" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label-traced">Nosso ambiente</div>
+      <h2 class="section-title">O consultório<br>que <em>encanta</em></h2>
+    </div>
+    <div class="galeria-grid">
+      <div class="gal-item featured reveal">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/WL201621.jpg" alt="Consultório da Dra. Kalina Carvalho" width="1200" height="675" loading="lazy">
+      </div>
+      <div class="gal-item reveal">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/WL201364-1.jpg" alt="Ambiente do consultório" width="600" height="450" loading="lazy">
+      </div>
+      <div class="gal-item reveal">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/WL201630.jpg" alt="Sala lúdica infantil" width="600" height="450" loading="lazy">
+      </div>
+      <div class="gal-item reveal">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/WL201692.jpg" alt="Área de atendimento" width="600" height="450" loading="lazy">
+      </div>
+      <div class="gal-item reveal">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/WL201446-1.jpg" alt="Recepção do consultório" width="600" height="450" loading="lazy">
+      </div>
+      <div class="gal-item reveal">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/WL201588-1.jpg" alt="Detalhe do equipamento odontológico" width="600" height="450" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="container">
+    <div class="dep-header reveal">
+      <div class="label-traced">O que dizem as famílias</div>
+      <h2 class="section-title" style="font-size:clamp(32px,4.5vw,60px)">Confiança que<br><em>transforma</em></h2>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card reveal">
+        <div class="dep-quote">"</div>
+        <p class="dep-text">Minha filha chegou com medo e saiu sorrindo, pedindo para voltar. A Dra. Kalina tem um jeito único de conquistar as crianças. O ambiente é lindo e muito acolhedor.</p>
+        <div class="dep-author">
+          <div class="dep-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div>
+            <div class="dep-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div class="dep-name">Ana Paula S.</div>
+            <div class="dep-role">Mãe da paciente Isabela, 5 anos</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal">
+        <div class="dep-quote">"</div>
+        <p class="dep-text">Tenho um filho autista e a Dra. Kalina foi a única profissional que conseguiu criar uma relação de confiança real com ele. Paciência, preparo e muito carinho. Recomendo com o coração.</p>
+        <div class="dep-author">
+          <div class="dep-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div>
+            <div class="dep-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div class="dep-name">Carlos R.</div>
+            <div class="dep-role">Pai do paciente Miguel, 8 anos</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal">
+        <div class="dep-quote">"</div>
+        <p class="dep-text">Levei minha filha desde pequeninha e ela já vai ao dentista como se fosse uma brincadeira. Hoje são 6 anos nos cuidados da Dra. Kalina e não trocaria por nada. Profissionalismo e amor em cada consulta.</p>
+        <div class="dep-author">
+          <div class="dep-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div>
+            <div class="dep-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div class="dep-name">Fernanda M.</div>
+            <div class="dep-role">Mãe da paciente Sofia, 10 anos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-side reveal">
+        <div class="label-traced">Dúvidas frequentes</div>
+        <h2 class="faq-side-title">Perguntas que<br><em>os pais</em><br>fazem</h2>
+        <p>Respondemos as dúvidas mais comuns para que você chegue à consulta com tranquilidade e confiança.</p>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            A partir de qual idade levar ao odontopediatra?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Recomenda-se a primeira visita ao dentista assim que o primeiro dentinho de leite surgir, geralmente entre 6 e 12 meses. Quanto antes, melhor: a criança se familiariza com o ambiente e a prevenção começa desde cedo.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Meu filho tem muito medo de dentista. O que fazer?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>A Dra. Kalina utiliza técnicas de condicionamento positivo e adaptação progressiva ao ambiente. Na primeira visita, o objetivo é apenas criar vínculo, sem qualquer procedimento. A sala lúdica e a TV no teto ajudam muito a transformar o medo em curiosidade e diversão.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Quanto tempo dura uma consulta?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>O atendimento é personalizado e respeita o tempo de cada criança. Uma consulta de rotina dura em média 30 a 45 minutos. Procedimentos mais complexos podem levar mais tempo, sempre sendo realizados de forma gradual e confortável.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            O consultório aceita convênios?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>O consultório funciona em atendimento particular. Para informações sobre formas de pagamento e parcelamento, entre em contato pelo WhatsApp e nossa equipe esclarecerá todas as dúvidas.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Como devo higienizar os dentes do meu bebê?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Antes dos dentes surgirem, limpe as gengivas com gaze umedecida. Com o surgimento dos primeiros dentes, use escova macia infantil e creme dental com flúor (tamanho de um grão de arroz até 3 anos). A Dra. Kalina orienta toda a família de forma individualizada na consulta.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Crianças podem fazer clareamento dental?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>O clareamento dental é indicado principalmente após a erupção completa dos dentes permanentes, geralmente a partir dos 12-14 anos. A avaliação clínica da Dra. Kalina é fundamental para definir a melhor indicação para cada caso.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PRINCIPAL -->
+<section class="cta-section" id="agendar">
+  <div class="cta-monogram" aria-hidden="true">KC</div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="reveal">
+      <div class="cta-label">Primeiro passo</div>
+      <h2 class="cta-title">Agende agora<br><em>a primeira consulta</em></h2>
+      <p class="cta-sub">A primeira consulta inclui diagnóstico completo e plano de cuidados personalizado para o seu filho.</p>
+      <a href="https://wa.me/5583987751689" target="_blank" rel="noopener" class="btn btn-white" style="font-size:15px;padding:16px 36px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Falar pelo WhatsApp
+      </a>
+      <p class="cta-note">+55 (83) 98775-1689 · Resposta rápida</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="container">
+    <div class="contato-inner">
+      <div class="contato-info reveal">
+        <div class="label-traced">Onde estamos</div>
+        <h2>Venha nos<br><em style="font-family:var(--font-display);font-style:italic;color:var(--green-deep)">visitar</em></h2>
+        <div class="contato-items">
+          <div class="contato-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>Endereço</strong>
+              Rua Escrivão Sebastião de Azevedo Bastos, 520<br>Manaíra · João Pessoa · PB · CEP 58038-491
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/5583987751689" target="_blank" rel="noopener" style="color:var(--green-deep)">+55 (83) 98775-1689</a>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>Horário de Atendimento</strong>
+              Segunda a Sexta: 8h às 18h<br>Sábados: mediante agendamento
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>Instagram</strong>
+              <a href="https://www.instagram.com/drakalinacarvalho" target="_blank" rel="noopener" style="color:var(--green-deep)">@drakalinacarvalho</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/5583987751689" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+      </div>
+      <div class="contato-map reveal">
+        <iframe src="https://www.google.com/maps?q=Rua%20Escriv%C3%A3o%20Sebasti%C3%A3o%20de%20Azevedo%20Bastos%2C%20520%20-%20Mana%C3%ADra%20Jo%C3%A3o%20Pessoa%20-%20PB%20CEP%3A%2058038-491&t=m&z=15&output=embed&iwloc=near" title="Localização do consultório da Dra. Kalina Carvalho" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://drakalinacarvalho.com.br/wp-content/uploads/2025/04/cropped-logo-240x101.png" alt="Dra. Kalina Carvalho" width="240" height="101">
+        <p>Odontopediatria humanizada, lúdica e especializada em João Pessoa. Cuidando de sorrisos e criando memórias felizes há 22 anos.</p>
+        <div class="footer-social" style="margin-top:20px">
+          <a href="https://www.instagram.com/drakalinacarvalho" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+          <a href="https://wa.me/5583987751689" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre a Dra. Kalina</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#tratamentos">Tratamentos</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5583987751689" target="_blank" rel="noopener">+55 (83) 98775-1689</a></li>
+          <li>Rua Escrivão Sebastião de Azevedo Bastos, 520</li>
+          <li>Manaíra · João Pessoa · PB</li>
+          <li>CEP 58038-491</li>
+          <li style="margin-top:8px">Seg a Sex: 8h às 18h</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Especialidades</h4>
+        <ul>
+          <li>Consulta e Prevenção</li>
+          <li>Endodontia Infantil</li>
+          <li>Exodontias</li>
+          <li>Restaurações Estéticas</li>
+          <li>Traumas Dentários</li>
+          <li>Atendimento ao Autismo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Dra. Kalina Carvalho · Odontopediatra · CRO: 3153 – PB · João Pessoa</p>
+      <div class="footer-mono">KC</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 48);
+  }, {passive:true});
+
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  var spans = btn.querySelectorAll('span');
+  var open = false;
+  function openMenu(){
+    open = true;
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden','false');
+    btn.setAttribute('aria-expanded','true');
+    spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    open = false;
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+    document.body.style.overflow = '';
+  }
+  btn.addEventListener('click', function(){ open ? closeMenu() : openMenu(); });
+  window.closeMobile = closeMenu;
+
+  var faqs = document.querySelectorAll('.faq-item');
+  faqs.forEach(function(item){
+    var q = item.querySelector('.faq-question');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      faqs.forEach(function(i){ i.classList.remove('open'); i.querySelector('.faq-question').setAttribute('aria-expanded','false'); });
+      if(!isOpen){
+        item.classList.add('open');
+        q.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+window.addEventListener('load', function(){
+  if(!window.gsap || !window.ScrollTrigger) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var heroContent = document.querySelector('.hero-content');
+  var heroImg = document.querySelector('.hero-arc-frame');
+
+  if(heroContent){
+    gsap.from(heroContent, {
+      opacity: 0,
+      y: 28,
+      duration: 1,
+      ease: 'power3.out',
+      delay: .1
+    });
+  }
+  if(heroImg){
+    gsap.from(heroImg, {
+      opacity: 0,
+      y: 32,
+      scale: .97,
+      duration: 1.1,
+      ease: 'power3.out',
+      delay: .3
+    });
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  var heroRevs = document.querySelectorAll('.hero .reveal');
+  var nonHero = Array.from(reveals).filter(function(el){
+    return !el.closest('.hero');
+  });
+
+  if(nonHero.length){
+    gsap.set(nonHero, {opacity: 0, y: 20});
+
+    ScrollTrigger.batch(nonHero, {
+      once: true,
+      start: 'top 88%',
+      onEnter: function(batch){
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: .7,
+          stagger: .09,
+          ease: 'power3.out'
+        });
+      }
+    });
+  }
+
+  document.fonts.ready.then(function(){
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+</body>
+</html>
